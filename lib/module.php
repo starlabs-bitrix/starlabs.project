@@ -4,6 +4,7 @@ namespace Starlabs\Project;
 use Bitrix\Main\Loader;
 use Bitrix\Main\LoaderException;
 use Exception;
+use Starlabs\Tools\Ajax\RequireModule;
 
 /**
  * Основной класс модуля
@@ -30,15 +31,15 @@ class Module
 	 * Задает константы проекта
 	 */
 	protected static function defineConstants()
-	{
-
-	}
+   {
+      RequireModule::getInstance()->add('starlabs.project');
+   }
 
 	/**
 	 * Обработчики событий.
 	 */
 	protected static function setupEventHandlers()
 	{
-//        Events\Backup::setHandlers();
+//        Events\Example::setHandlers();
 	}
 }

@@ -38,6 +38,27 @@ class starlabs_project extends CModule
 	 */
 	public function installFiles()
 	{
+		$moduleDir = explode('/', __DIR__);
+		array_pop($moduleDir);
+		$moduleDir = implode('/', $moduleDir);
+		$sourceRoot = $moduleDir . '/install/';
+
+		$parts = [
+			'public' => [
+				'target' => '/',
+				'rewrite' => false,
+			],
+		];
+
+		foreach ($parts as $dir => $config) {
+			CopyDirFiles(
+				$sourceRoot . $dir,
+				$_SERVER['DOCUMENT_ROOT'] . $config['target'],
+				$config['rewrite'],
+				true
+			);
+		}
+
 		return true;
 	}
 
@@ -46,6 +67,8 @@ class starlabs_project extends CModule
 	 */
 	public function unInstallFiles()
 	{
+		\Bitrix\Main\IO\Directory::deleteDirectory($_SERVER['DOCUMENT_ROOT'] . '/cli/');
+
 		return true;
 	}
 

@@ -23,6 +23,9 @@ class Module
 			throw new Exception('Module "starlabs.tools" was not installed.');
 		}
 
+		//Регистрация возможности обрабатывать запросы на адрес /ajax/ данным модулем
+		RequireModule::getInstance()->add('starlabs.project');
+
 		self::defineConstants();
 		self::setupEventHandlers();
 	}
@@ -32,7 +35,7 @@ class Module
 	 */
 	protected static function defineConstants()
    {
-      RequireModule::getInstance()->add('starlabs.project');
+
    }
 
 	/**
